@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>baxter_haptics</name>
+  <version>1.0.0</version>
+  <description>
+    Kyle toying with haptic interactions, PyKDL, kdl_parser_py
+  </description>
+
+  <maintainer email="rsdk.support@rethinkrobotics.com">
+    Rethink Robotics Inc.
+  </maintainer>
+  <license>BSD</license>
+  <url type="website">http://www.rethinkrobotics.com/sdk</url>
+  <url type="repository">
+    https://github.com/RethinkRobotics/baxter
+  </url>
+  <url type="bugtracker">
+    https://github.com/RethinkRobotics/baxter/issues
+  </url>
+  <author>Rethink Robotics Inc.</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>baxter_core_msgs</build_depend>
+  <build_depend>baxter_interface</build_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>baxter_core_msgs</run_depend>
+  <run_depend>baxter_interface</run_depend>
+
+</package>
