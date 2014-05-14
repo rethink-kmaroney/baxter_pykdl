@@ -28,7 +28,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Kelsey Hawkins
-# Modifications: Rethink Robotics Inc.
+# Kyle Maroney
 
 import numpy as np
 

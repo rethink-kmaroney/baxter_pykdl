@@ -28,7 +28,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import PyKDL
-import sys
 
 import rospy
 
