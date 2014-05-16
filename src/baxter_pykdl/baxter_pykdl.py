@@ -96,11 +96,11 @@ class baxter_kinematics(object):
             kdl_array = PyKDL.JntArrayVel(kdl_array)
         return kdl_array
 
-    def kdl_to_mat(self, m):
-        mat =  np.mat(np.zeros((m.rows(), m.columns())))
-        for i in range(m.rows()):
-            for j in range(m.columns()):
-                mat[i,j] = m[i,j]
+    def kdl_to_mat(self, data):
+        mat =  np.mat(np.zeros((data.rows(), data.columns())))
+        for i in range(data.rows()):
+            for j in range(data.columns()):
+                mat[i,j] = data[i,j]
         return mat
 
     def forward_position_kinematics(self):
