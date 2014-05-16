@@ -37,27 +37,38 @@ def main():
     print '*** Baxter PyKDL Kinematics ***\n'
     kin = baxter_kinematics('right')
 
+    print '\n*** Baxter Description ***\n'
     kin.print_robot_description()
+    print '\n*** Baxter KDL Chain ***\n'
     kin.print_kdl_chain()
     # FK Position
-    #kin.forward_position_kinematics()
+    print '\n*** Baxter Position FK ***\n'
+    print kin.forward_position_kinematics()
     # FK Velocity
-    kin.forward_velocity_kinematics()
+    # print '\n*** Baxter Velocity FK ***\n'
+    # kin.forward_velocity_kinematics()
     # IK
+    print '\n*** Baxter Position IK ***\n'
     pos = [0.582583, -0.180819, 0.216003]
     rot = [0.03085, 0.9945, 0.0561, 0.0829]
-    kin.inverse_kinematics(pos)  # position, don't care orientation
-    kin.inverse_kinematics(pos, rot)  # position & orientation
+    print kin.inverse_kinematics(pos)  # position, don't care orientation
+    print '\n*** Baxter Pose IK ***\n'
+    print kin.inverse_kinematics(pos, rot)  # position & orientation
     # Jacobian
-    kin.jacobian()
+    print '\n*** Baxter Jacobian ***\n'
+    print kin.jacobian()
     # Jacobian Transpose
-    kin.jacobian_transpose()
+    print '\n*** Baxter Jacobian Tranpose***\n'
+    print kin.jacobian_transpose()
     # Jacobian Pseudo-Inverse (Moore-Penrose)
-    kin.jacobian_pseudo_inverse()
+    print '\n*** Baxter Jacobian Pseudo-Inverse (Moore-Penrose)***\n'
+    print kin.jacobian_pseudo_inverse()
     # Joint space mass matrix
-    kin.inertia()
+    print '\n*** Baxter Joint Inertia ***\n'
+    print kin.inertia()
     # Cartesian space mass matrix
-    kin.cart_inertia()
+    print '\n*** Baxter Cartesian Inertia ***\n'
+    print kin.cart_inertia()
 
 if __name__ == "__main__":
     main()
