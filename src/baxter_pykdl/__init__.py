@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 # Copyright (c) 2013-2014, Rethink Robotics
 # All rights reserved.
@@ -27,31 +26,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import sys
-import argparse
-
-from urdf_parser_py.urdf import URDF
-
-
-def main():
-    parser = argparse.ArgumentParser(usage='Load an URDF file')
-    parser.add_argument('file', type=argparse.FileType('r'), nargs='?',
-                        default=None, help='File to load. Use - for stdin')
-    parser.add_argument('-o', '--output', type=argparse.FileType('w'),
-                        default=None, help='Dump file to XML')
-    args = parser.parse_args()
-
-    if args.file is None:
-        print 'FROM PARAM SERVER'
-        robot = URDF.from_parameter_server()
-    else:
-        print 'FROM STRING'
-        robot = URDF.from_xml_string(args.file.read())
-
-    print(robot)
-
-    if args.output is not None:
-        args.output.write(robot.to_xml_string())
-
-if __name__ == "__main__":
-    main()
+from .baxter_pykdl import (
+    baxter_kinematics,
+)

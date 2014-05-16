@@ -27,37 +27,37 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import PyKDL
-
 import rospy
 
-import baxter_interface
+from baxter_pykdl import baxter_kinematics
 
-from baxter_kdl.kdl_parser import kdl_tree_from_urdf_model
-from urdf_parser_py.urdf import URDF
 
 def main():
-    print 'Getting URDF off of param server'
-    baxter = URDF.from_parameter_server(key='robot_description')
-    print 'Creating PyKDL tree'
-    tree = kdl_tree_from_urdf_model(baxter)
+    rospy.init_node('baxter_kinematics')
+    print '*** Baxter PyKDL Kinematics ***\n'
+    kin = baxter_kinematics('right')
 
-    nf_joints = 0
-    for j in baxter.joints:
-        if j.type != 'fixed':
-            nf_joints += 1
-    print "URDF non-fixed joints: %d;" % nf_joints
-    print "URDF total joints: %d" % len(baxter.joints)
-    print "KDL joints: %d" % tree.getNrOfJoints()
-    print "URDF links: %d" % len(baxter.links)
-    print "KDL segments: %d" % tree.getNrOfSegments()
-
-    base_link = baxter.get_root()
-#    end_link = robot.links.keys()[random.randint(0, len(robot.links)-1)]
-#    chain = tree.getChain(base_link, end_link)
-#    print "Root link: %s; Random end link: %s" % (base_link, end_link)
-#    for i in range(chain.getNrOfSegments()):
-#        print chain.getSegment(i).getName()
+    kin.print_robot_description()
+    kin.print_kdl_chain()
+    # FK Position
+    #kin.forward_position_kinematics()
+    # FK Velocity
+    kin.forward_velocity_kinematics()
+    # IK
+    pos = [0.582583, -0.180819, 0.216003]
+    rot = [0.03085, 0.9945, 0.0561, 0.0829]
+    kin.inverse_kinematics(pos)  # position, don't care orientation
+    kin.inverse_kinematics(pos, rot)  # position & orientation
+    # Jacobian
+    kin.jacobian()
+    # Jacobian Transpose
+    kin.jacobian_transpose()
+    # Jacobian Pseudo-Inverse (Moore-Penrose)
+    kin.jacobian_pseudo_inverse()
+    # Joint space mass matrix
+    kin.inertia()
+    # Cartesian space mass matrix
+    kin.cart_inertia()
 
 if __name__ == "__main__":
     main()
