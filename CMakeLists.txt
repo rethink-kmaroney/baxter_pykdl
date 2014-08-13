@@ -7,8 +7,6 @@ find_package(catkin
   rospy
   geometry_msgs
   sensor_msgs
-  urdfdom
-  python_orocos_kdl
   tf
   baxter_core_msgs
   baxter_interface
@@ -22,10 +20,12 @@ catkin_package(
   geometry_msgs
   sensor_msgs
   urdfdom
-  python_orocos_kdl
   tf
   baxter_interface
   baxter_core_msgs
+  DEPENDS
+  python_orocos_kdl
+  urdfdom
 )
 
 install(
